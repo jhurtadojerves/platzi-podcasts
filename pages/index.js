@@ -1,24 +1,21 @@
+import 'isomorphic-fetch'
+import Link from 'next/link'
+import Layout from '../components/Layout'
+import ChannelGrid from '../components/ChannelGrid'
+
 export default class extends React.Component {
+  
+  static async getInitialProps() {
+    let req = await fetch('https://api.audioboom.com/channels/recommended')
+    let { body: channels } = await req.json()
+    return { channels }
+
+  }
   render() {
-    return <div>
-      <h1> Hola Platzi! </h1>
-      <p>Bienvenidos al curso de Next.Js</p>
-
-      <style jsx>{`
-        h1 {
-          color: red;
-        }
-        :global(p) {
-          color: green;
-        }
-      `}</style>
-
-        <style jsx global>{`
-          body {
-            background: yellow;
-          }
-        `}</style>
-
-    </div>
+    const { channels } = this.props
+    return (
+    <Layout title="Podcasts">
+      <ChannelGrid channels={ channels } />
+    </Layout>)
   }
 }
