@@ -4,11 +4,11 @@ import slug from '../helpers/slug'
 
 export default class PodcastList extends React.Component {
   render(){
-    const { audioClips } = this.props
+    const { podcasts, onClickPodcast } = this.props
     return (
       <div>
         {
-          audioClips.map(clip => (
+          podcasts.map(clip => (
             <Link 
               route='podcast' 
               params={{
@@ -17,7 +17,10 @@ export default class PodcastList extends React.Component {
                 slug: slug(clip.title), 
                 id: clip.id,
               }}
-              prefetch key={clip.id}>
+              prefetch 
+              key={clip.id}
+              onClick={ (event) => onClickPodcast(event, podcast) }
+              >
               <a className='podcast'>
                 <h3>{ clip.title }</h3>
                 <div className='meta'>
