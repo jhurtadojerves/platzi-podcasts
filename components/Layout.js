@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '../routes'
 import Head from 'next/head'
 
 export default class Layout extends React.Component {
@@ -10,7 +10,7 @@ export default class Layout extends React.Component {
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>{ title }</title>
         </Head>
-        <header><Link href="/"><a>Podcasts</a></Link></header>
+        <header><Link route="index"><a>Podcasts</a></Link></header>
         { children }
         <style jsx>{`
           header {
